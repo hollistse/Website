@@ -17,3 +17,4 @@ li.wpml-ls-slot-shortcode_actions.wpml-ls-first-item {
 
 
 <?php do_action('wpml_add_language_selector'); ?>
+<?php do_action('wpml_add_language_selector'); ?>
