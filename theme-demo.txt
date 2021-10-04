@@ -1,0 +1,19 @@
+.wpml-ls-statics-shortcode_actions.wpml-ls {
+    display: inline-block;
+    padding: 0px;
+    border: 0px;
+}
+li.wpml-ls-slot-shortcode_actions.wpml-ls-first-item {
+    border-right: 1px solid #6f2b8f;
+}
+@media handheld, only screen and (max-width: 780px){
+.mk-header-right {
+    display: block !important;
+}
+.mk-header-social.header-section {
+    display: none !important;
+}
+}
+
+
+<?php do_action('wpml_add_language_selector'); ?>
