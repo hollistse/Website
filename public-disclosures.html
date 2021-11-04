@@ -1,0 +1,758 @@
+﻿<!DOCTYPE html>
+<html ng-app="slgCorpApp" ng-controller="SlgCorpCtrl as vm">
+<head>
+	<title ng-bind="contents.pageInfo.children[0].meta_title.value"></title>
+	<meta ng-if="!contents.pageInfo" name="description" content="Investors">
+	<meta ng-if="contents.pageInfo" name="description" content="{{contents.pageInfo.children[0].meta_description.value}}">
+	<meta name="keywords" content="{{contents.pageInfo.children[0].meta_keywords.value}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="../css/owl.theme.css" />
+	<link rel="stylesheet" type="text/css" href="../css/jquery.newsticker.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="../css/tinycircleslider.css" />
+	<link rel="stylesheet" type="text/css" href="../css/whitney-font.css" />
+	<link rel="stylesheet" type="text/css" href="../css/aos.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-simple-mobilemenu.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../css/fontawesome-all.css">
+	
+	<link rel="stylesheet" type="text/css" href="../css/adsmart.css">
+	<link rel="stylesheet" type="text/css" href="../css/animation.css">
+	
+	<!-- tracking script -->
+	<script src="//assets.adobedtm.com/launch-EN9ded5877c20d4d8bb761a8fc0d80aef9.min.js"></script>
+	<!-- tracking script -->
+	
+	<style>
+	.tabContent2 div#menu3.tab-pane .dateSpan>li span.all-categories-filter {
+	    min-width: 580px;
+	}
+	.pagination a {
+		 cursor: pointer;
+	}
+	.col-4-list-content .text-right a.download-link-btn {
+		float: none;
+		text-align: left;
+	}
+	a.download-link-btn {
+		cursor: pointer;
+	}
+	</style>
+</head>
+
+<body class="bgWhite investors-sub-page-template sub-page-default">
+
+<ul class="mobile_menu"><!--#include virtual="/group/mobilemenu.shtml"--></ul><!--mobile_menu-->
+<!--#include virtual="/group/header.shtml"-->
+
+<!--header insert before ID:heroSlider-->
+<section class="heroSlider example-classname scopeBanner top-single-banner sub-page-banner hidden-xs" id="heroSlider">
+	<div class="scene animated fadeInRight" ng-if="contents.pageHeader.children.length">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 col-xs-12 innerCaption">
+					<div class="innerBannerText">
+						<h6 class="subTitle" ng-bind="contents.pageHeader.children[0].title.value"></h6>
+						<h1 class="animated-2 fadeIn" ng-bind-html="trustHtml(contents.pageHeader.children[0].description.value)"></h1>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-4"></div>
+			</div>
+			
+			<div class="row banner-image-description-row">
+				<div class="col-md-12">
+					<div class="banner-image-description" ng-bind="contents.pageHeader.children[0].image_description.value"></div>			
+				</div>
+			</div>
+			
+			
+		</div>
+		
+
+		<div class="bannerImgBox mobile-pos-x-60 visible-md visible-lg" ng-style="{ 'background-image': 'url(' + cmsURL + contents.pageHeader.children[0].image.src + ')' }"></div>
+		<div class="bannerImgBox visible-sm" ng-style="{ 'background-image': 'url(' + cmsURL + contents.pageHeader.children[0].image_tablet.src + ')' }"></div>
+		
+		
+	</div><!--scene-->
+</section>
+
+<!-- mobile version top banner -->
+<section class="m-heroSlider-section visible-xs top-single-banner sub-page-banner" id="heroSlider">
+		<div class="bannerImgBox m-top-banner-image" ng-if="contents.pageHeader.children.length">
+			
+			<img ng-src="{{cmsURL + contents.pageHeader.children[0].image_mobile.src}}">
+			<div class="container">
+			
+			
+				<div class="row banner-image-description-row">
+					<div class="col-xs-12 innerCaption">
+						<div class="banner-image-description" ng-bind="contents.pageHeader.children[0].image_description.value"></div>			
+					</div>
+				</div>
+			
+			
+			</div>
+			
+		</div>
+		<!--<div class="m-top-banner-image"><img src="0808Investors/SLG-3InvestorRelations-Banner_01.jpg"></div>-->
+		
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="innerBannerText">
+						<h6 class="subTitle" ng-bind="contents.pageHeader.children[0].title.value"></h6>
+						<h1 class="animated-2 fadeIn" ng-bind-html="trustHtml(contents.pageHeader.children[0].description.value)"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+</section>
+<!-- mobile version top banner -->
+
+<!--breadcrumbContainer-->
+<section class="sub-page-breadcrumb hidden-xs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12" data-aos="fade-up"
+					data-aos-easing="ease-in-sine">
+					
+					<div class="breadcrumbContainer">
+							
+								<ul class="breadcrumb">
+									<li ng-repeat="n in [] | range:3" ng-if="contents.pageInfo.children[0]['menu' + (n+1) + '_link'].value.length"><a ng-href="{{contents.pageInfo.children[0]['menu' + (n+1) + '_link'].value}}" data-track-location-id="body" data-track-button-name="investors" ng-bind="contents.pageInfo.children[0]['menu' + (n+1) + '_text'].value" ng-attr-target="{{ contents.pageInfo.children[0]['menu' + (n+1) + '_link'].value.startsWith('http') ? '_blank' : undefined }}"></a></li>
+									<li ng-bind="contents.pageInfo.children[0].menu_text.value"></li>
+								</ul>
+							
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+<!--breadcrumbContainer-->
+
+<!--Content here-->
+<section class="top-section sub-page-top-section p-bottom-35" data-aos="fade-up" data-aos-easing="ease-in-sine">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					
+					<h2 class="sub-page-bordertitle borderTitle borderTitleBig" ng-bind="contents.mainSection.children[0].title.value"></h2>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<p class="text-align-left" ng-bind-html="trustHtml(contents.mainSection.children[0].description.value)"></p>
+				</div>
+				<div class="col-md-6"></div>
+			</div>
+		</div>
+</section>
+
+<section class="middle-section report-title-section" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">
+	<div class="container">
+		<div class="row full-nav-tabs">
+			<div class="col-sm-12 col-xs-12 full-col-12">
+				<div class="tableHead">
+					<ul class="nav nav-tabs navTabs dragscroll">
+						<!-- 2021-09-14 ESAS0071 - AY -->
+						<!-- Added ng-if="documentCategoriesDict.<tab category>.show" to set tab visibility -->
+						<!-- Updated ng-bind="documentCategoriesDict.<tab category>.phrase" to reflect added phrase value instead of directly from documentCatgoriesDict.<tab category> -->
+						<li class="active"><a data-toggle="tab" href="#latest-top-publications" ng-click="loadDocs('LatestTopPublications')" ng-bind="documentCategoriesDict.LatestTopPublications.phrase" ng-if="documentCategoriesDict.LatestTopPublications.show"></a></li>
+						<li><a data-toggle="tab" href="#announcements-circulars" ng-click="loadDocs('AnnouncementsAndCirculars')" ng-bind="documentCategoriesDict.AnnouncementsAndCirculars.phrase" ng-if="documentCategoriesDict.AnnouncementsAndCirculars.show"></a></li>
+						<li><a data-toggle="tab" href="#financial-information" ng-click="loadDocs('FinancialReports'); loadDocs('ResultsAnnouncements')" ng-bind="documentCategoriesDict.FinancialInformation.phrase" ng-if="documentCategoriesDict.FinancialInformation.show"></a></li>
+						<li><a data-toggle="tab" href="#corporate-presentation" ng-click="loadDocs('CorporatePresentation')" ng-bind="documentCategoriesDict.CorporatePresentation.phrase" ng-if="documentCategoriesDict.CorporatePresentation.show"></a></li>
+						<!-- 2021-09-14 ESAS0073 - AY -->
+						<!-- Added HK Listing Rules Tab with text and tab showing/hiding binded from Sitecore -->
+						<li><a data-toggle="tab" href="#hk-listing-rules" ng-click="loadDocs('HKListingRules')" ng-bind="documentCategoriesDict.HKListingRules.phrase" ng-if="documentCategoriesDict.HKListingRules.show"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	
+<section class="bottom-section public-disclosures-report-section report-section nav-tabs-list-section report-section-style-1">
+	<div class="container find-report">
+		<!-- 2021-09-14 ESAS0071 - AY -->
+		<!-- Updated ng-bind="documentCategoriesDict.<tab category>.phrase" to reflect added phrase value instead of directly from documentCatgoriesDict.<tab category> -->
+		<div class="row " data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">
+			<div class="col-sm-12 col-xs-12">
+				<div class="tab-content tabContent2">
+
+					<div id="latest-top-publications" class="tab-pane tab-latest-top-publications fade in active">
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.LatestTopPublications.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.LatestTopPublications.docs.length" display-items="documents.LatestTopPublications.displayDocs" paging-size="documents.LatestTopPublications.pageSize" item-per-page="documents.LatestTopPublications.count" total-items="documents.LatestTopPublications.filteredDocs"></paging-control>
+						</div>
+					</div>
+
+					<div id="announcements-circulars" class="tab-pane tab-announcements-circulars fade">
+						<div class="all-filter-section">
+							<select class="selectBox" ng-model="yearAnnouncementsAndCirculars" ng-change="documents.AnnouncementsAndCirculars.filteredDocs = filterDocs(documents.AnnouncementsAndCirculars.docs, 'year', yearAnnouncementsAndCirculars, 'category', categoryAnnouncementsAndCirculars)">
+								<option value="" ng-bind="documentCategoriesDict.AllYears.phrase"></option>
+								<option>2021</option>
+								<option>2020</option>
+								<option>2019</option>
+								<option>2018</option>
+								<option>2017</option>
+								<option>2016</option>
+								<option>2015</option>
+								<option>2014</option>
+								<option>2013</option>
+								<option>2012</option>
+								<option>2011</option>
+								<option>2010</option>
+								<option>2009</option>
+								<option>2008</option>
+								<option>2007</option>
+								<option>2006</option>
+								<option>2005</option>
+								<option>2004</option>
+								<option>2003</option>
+							</select>
+							<select class="selectBox" ng-model="categoryAnnouncementsAndCirculars" ng-change="documents.AnnouncementsAndCirculars.filteredDocs = filterDocs(documents.AnnouncementsAndCirculars.docs, 'year', yearAnnouncementsAndCirculars, 'category', categoryAnnouncementsAndCirculars)">
+								<option value="" ng-bind="documentCategoriesDict.AllCategories.phrase"></option>
+								<option value="Announcement" ng-bind="documentCategoriesDict.Announcement.phrase" ng-if="documentCategoriesDict.Announcement.show"></option>
+								<option value="Circular" ng-bind="documentCategoriesDict.Circular.phrase" ng-if="documentCategoriesDict.Circular.show"></option>
+								<option value="Notice of General Meeting" ng-bind="documentCategoriesDict.NoticeOfGeneralMeeting.phrase" ng-if="documentCategoriesDict.NoticeOfGeneralMeeting.show"></option>
+								<option value="Proxy Form" ng-bind="documentCategoriesDict.ProxyForm.phrase" ng-if="documentCategoriesDict.ProxyForm.show"></option>
+								<option value="Regular Return Filing" ng-bind="documentCategoriesDict.RegularReturnFiling.phrase" ng-if="documentCategoriesDict.RegularReturnFiling.show"></option>
+								<option value="Overseas Announcement" ng-bind="documentCategoriesDict.OverseasAnnouncement.phrase" ng-if="documentCategoriesDict.OverseasAnnouncement.show"></option>
+								<option value="Miscellaneous" ng-bind="documentCategoriesDict.Miscellaneous.phrase" ng-if="documentCategoriesDict.Miscellaneous.show"></option>
+								<option value="Prospectus" ng-bind="documentCategoriesDict.Prospectus.phrase" ng-if="documentCategoriesDict.Prospectus.show"></option>
+								<option value="Offering Circular" ng-bind="documentCategoriesDict.OfferingCircular.phrase" ng-if="documentCategoriesDict.OfferingCircular.show"></option>
+							</select>
+						</div>
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.AnnouncementsAndCirculars.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.AnnouncementsAndCirculars.docs.length" display-items="documents.AnnouncementsAndCirculars.displayDocs" paging-size="documents.AnnouncementsAndCirculars.pageSize" item-per-page="documents.AnnouncementsAndCirculars.count" total-items="documents.AnnouncementsAndCirculars.filteredDocs"></paging-control>
+						</div>
+					</div>
+
+					<div id="financial-information" class="tab-pane tab-financial-information fade">
+						<div class="single-report-title-section"><h3 class="single-report-title" ng-bind="documentCategoriesDict.ResultsAnnouncements.phrase"></h3></div>
+						<div class="all-filter-section">
+							<select class="selectBox" ng-model="yearResultsAnnouncements" ng-change="documents.ResultsAnnouncements.filteredDocs = filterDocs(documents.ResultsAnnouncements.docs, 'year', yearResultsAnnouncements, 'category', '')">
+								<option value="" ng-bind="documentCategoriesDict.AllYears.phrase"></option>
+								<option>2021</option>
+								<option>2020</option>
+								<option>2019</option>
+								<option>2018</option>
+								<option>2017</option>
+								<option>2016</option>
+								<option>2015</option>
+								<option>2014</option>
+								<option>2013</option>
+								<option>2012</option>
+								<option>2011</option>
+								<option>2010</option>
+								<option>2009</option>
+								<option>2008</option>
+								<option>2007</option>
+								<option>2006</option>
+								<option>2005</option>
+								<option>2004</option>
+								<option>2003</option>
+							</select>
+						</div>
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.ResultsAnnouncements.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.ResultsAnnouncements.docs.length" display-items="documents.ResultsAnnouncements.displayDocs" paging-size="documents.ResultsAnnouncements.pageSize" item-per-page="documents.ResultsAnnouncements.count" total-items="documents.ResultsAnnouncements.filteredDocs"></paging-control>
+						</div>
+
+						<div class="single-report-title-section single-report-title-section-2"><h3 class="single-report-title" ng-bind="documentCategoriesDict.FinancialReports.phrase"></h3></div>
+						<div class="all-filter-section">
+							<select class="selectBox" ng-model="yearFinancialReports" ng-change="documents.FinancialReports.filteredDocs = filterDocs(documents.FinancialReports.docs, 'year', yearFinancialReports, 'category', '')">
+								<option value="" ng-bind="documentCategoriesDict.AllYears.phrase"></option>
+								<option>2021</option>
+								<option>2020</option>
+								<option>2019</option>
+								<option>2018</option>
+								<option>2017</option>
+								<option>2016</option>
+								<option>2015</option>
+								<option>2014</option>
+								<option>2013</option>
+								<option>2012</option>
+								<option>2011</option>
+								<option>2010</option>
+								<option>2009</option>
+								<option>2008</option>
+								<option>2007</option>
+								<option>2006</option>
+								<option>2005</option>
+								<option>2004</option>
+								<option>2003</option>
+								<option>2002</option>
+								<option>2001</option>
+								<option>2000</option>
+							</select>
+						</div>
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.FinancialReports.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.FinancialReports.docs.length" display-items="documents.FinancialReports.displayDocs" paging-size="documents.FinancialReports.pageSize" item-per-page="documents.FinancialReports.count" total-items="documents.FinancialReports.filteredDocs"></paging-control>
+						</div>
+					</div>
+
+					<div id="corporate-presentation" class="tab-pane tab-corporate-presentation fade">
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.CorporatePresentation.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.CorporatePresentation.docs.length" display-items="documents.CorporatePresentation.displayDocs" paging-size="documents.CorporatePresentation.pageSize" item-per-page="documents.CorporatePresentation.count" total-items="documents.CorporatePresentation.filteredDocs"></paging-control>
+						</div>
+					</div>
+					<!-- 2021-09-14 ESAS0071 - AY -->
+					<!-- Added HK Listing Rules content holding panel -->
+					<div id="hk-listing-rules" class="tab-pane tab-hk-listing-rules fade">
+						<div class="all-filter-section">
+							<select class="selectBox" ng-model="yearHKListingRules" ng-change="documents.HKListingRules.filteredDocs = filterDocs(documents.HKListingRules.docs, 'year', yearHKListingRules, 'category', '')">
+								<option value="" ng-bind="documentCategoriesDict.AllYears.phrase"></option>
+								<option>2021</option>
+								<option>2020</option>
+								<option>2019</option>
+							</select>
+						</div>
+						<div class="single-tab-table-list">
+							<div class="single-info-row" ng-repeat="doc in documents.HKListingRules.displayDocs">
+								<div class="col-md-1 col-sm-12 col-xs-12 col-1-list-content"><p class="show-list-years" ng-bind="formatDate(doc.date)"></p></div>
+								<div class="col-md-7 col-sm-12 col-xs-12 col-2-list-content"><a href="javascript:open_pdf('{{cmsURL + (doc.file.fields.url ? doc.file.fields.url : doc.file.fields.url_en)}}')" class="content-text-link" ng-bind="doc.title"></a></div>
+								<div class="col-md-2 col-sm-4 col-xs-6 col-3-list-content"><p class="show-file-size" ng-bind="(doc.file.fields.size ? doc.file.fields.size : doc.file.fields.size_en) | filesize"></p></div>
+								<div class="col-md-2 col-sm-8 col-xs-6 col-4-list-content">
+									<div class="text-right">
+										<a ng-if="doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url}}')" class="download-link-btn" ng-bind="labelsDict.Download"></a>
+										<a ng-if="lang != '' && !doc.file.fields.url" href="javascript:open_pdf('{{cmsURL + doc.file.fields.url_en}}')" class="download-link-btn" ng-bind="labelsDict.DownloadEngVersion"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<paging-control ng-if="documents.HKListingRules.docs.length" display-items="documents.HKListingRules.displayDocs" paging-size="documents.HKListingRules.pageSize" item-per-page="documents.HKListingRules.count" total-items="documents.HKListingRules.filteredDocs"></paging-control>
+						</div>
+					</div>
+
+				</div><!--tab-content-->
+			</div><!--col-12-->
+		</div><!--row-->
+	</div><!--container-->
+</section>
+
+<section class="main-footer-section" id="footer">
+	<!--#include virtual="/group/footer.shtml"-->
+</section>
+	
+	<!-- tracking script -->
+	<script type="text/JavaScript">_satellite.pageBottom();</script>
+	<!-- tracking script -->
+
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/fontawesome.js"></script>
+	<script type="text/javascript" src="../js/owl.carousel.js"></script>
+	<script type="text/javascript" src="../js/wow.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.newsticker.js"></script>
+	<!--<script type="text/javascript" src="../js/jquery.tinycircleslider.js"></script>-->
+	<script type="text/javascript" src="../js/jquery.scrollify.js"></script>
+	<script type="text/javascript" src="../js/aos.js"></script>
+	<script type="text/javascript" src="../js/jquery-simple-mobilemenu.min.js"></script>
+	<!--adsmart add-->
+	<!-- tracking script -->
+    <script type="text/javascript">
+    var track_PageName = "Group:Investors:Public Disclosures Page";
+    var track_Language = "en";
+    var track_SiteSection1 = "Group";
+    var track_SiteSection2 = "Investors";
+    </script>
+	<!-- tracking script -->
+	<script type="text/javascript" src="../js/adsmart.js"></script>
+	<!--end-->
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/angular-route.min.js"></script>
+	<script src="../js/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="../js/slg-group-contents.js"></script>
+	<!--<script type="text/javascript" src="js/ipd.js"></script>-->
+
+	<script type="text/javascript">
+		var slgCorpApp = angular.module('slgCorpApp', ['ngSanitize', 'slgCorpApp.services', 'slgCorpApp.filters', 'slgCorpApp.directives'])
+		.config(['$compileProvider', function ($compileProvider) {
+			$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|javascript):/);
+		}]);;
+
+        //2020-10-26 ESAS0042 - AY
+        //Added anchor variable
+        //Added function loadPublication() to call loadDocs() for loading corresponding content inside tab panel
+		var anchor = "latest-top-publications";
+
+		function loadPublication($scope) {
+			anchor = window.location.hash.substr(1).replace("!", "").replace("#", "")
+            $('.nav-tabs a[href="#' + anchor + '"]').tab('show');
+		    switch (anchor) {
+		        case "announcements-circulars":
+					$scope.loadDocs('AnnouncementsAndCirculars');
+		            break;
+				case "financial-information":
+		            $scope.loadDocs('FinancialReports');
+		            $scope.loadDocs('ResultsAnnouncements');
+		            break;
+		        case "corporate-presentation":
+		            $scope.loadDocs('CorporatePresentation')
+					break;
+				//2021-09-14 ESAS0073 - AY
+				//Added hk-listing-rules anchor translation and document population in loadPublication function
+                case "hk-listing-rules":
+                    $scope.loadDocs('HKListingRules')
+                    break;
+				default:
+		            $scope.loadDocs('LatestTopPublications');
+		            break;
+			}
+		}
+
+		$(window).load(function () {
+		    //2021-01-21 ESAS0050 - AY
+		    //Check whether if $("#" + anchor).offset() is undefined. If not undefined then proceed to set animate($("#" + anchor).offset().top)
+            if (typeof $("#" + anchor).offset() != "undefined")
+		        $('html, body').animate({ scrollTop: $("#" + anchor).offset().top + 'px' }, 800);
+		})
+
+		slgCorpApp.controller('SlgCorpCtrl', ['$scope', '$http', '$filter', '$sce', '$timeout', 'graphqlService', function ($scope, $http, $filter, $sce, $timeout, graphqlService) {
+			$scope.cmsURL = graphqlService.cmsURL;
+			$scope.items = [
+				['menu', 'Global/Menu', ['ImageSection']],
+				['labels', 'Global/Labels', ['DictionaryEntry']],
+				['pageInfo', 'investor/PublicDisclosures/PageInfo', ['PageData']],
+				['pageHeader', 'investor/PublicDisclosures/PageHeader', ['BannerSection']],
+				['mainSection', 'investor/PublicDisclosures/MainSection', ['PageSection']],
+				['documentCategories', 'investor/PublicDisclosures/DocumentCategories', ['DictionaryEntry']],
+				['footerSection', 'Global/FooterSection', ['PageSection', 'ImageSection']]
+			];
+			$scope.newLang = $scope.lang = graphqlService.getLang();
+			$scope.switchLang = graphqlService.switchLang;
+			$scope.labelsDict = {};
+			$scope.documentCategoriesDict = {};
+			$scope.documents = {
+				FinancialReports: {
+					path: "investor/PublicDisclosures/FinancialInformation/FinancialReports",
+					page: 0,
+					count: 6,
+					totalCount: 0,
+					docs: [],
+					filteredDocs: [],
+					displayDocs: [],
+					pages: [],
+					year: '',
+					category: '',
+					loaded: 0
+				},
+				ResultsAnnouncements: {
+					path: "investor/PublicDisclosures/FinancialInformation/ResultsAnnouncements",
+					page: 0,
+					count: 6,
+					totalCount: 0,
+					docs: [],
+					filteredDocs: [],
+					displayDocs: [],
+					pages: [],
+					year: '',
+					category: '',
+					loaded: 0
+				},
+				CorporatePresentation: {
+					path: "investor/PublicDisclosures/CorporatePresentation",
+					page: 0,
+					count: 6,
+					totalCount: 0,
+					docs: [],
+					filteredDocs: [],
+					displayDocs: [],
+					pages: [],
+					year: '',
+					category: '',
+					loaded: 0
+				},
+				AnnouncementsAndCirculars: {
+					path: "investor/PublicDisclosures/AnnouncementsAndCirculars",
+					page: 0,
+					count: 6,
+					totalCount: 0,
+					docs: [],
+					filteredDocs: [],
+					displayDocs: [],
+					pages: [{}],
+					year: '',
+					category: '',
+					loaded: 0
+				},
+				LatestTopPublications: {
+					path: "investor/PublicDisclosures/LatestTopPublications",
+					page: 0,
+					count: 6,
+					totalCount: 0,
+					docs: [],
+					filteredDocs: [],
+					displayDocs: [],
+					pages: [],
+					year: '',
+					category: '',
+					loaded: 0
+				},
+				//2021-09-14 ESAS0073 - AY
+				//Added HKListingRules document parameter in $scope.documents
+                HKListingRules: {
+                    path: "investor/PublicDisclosures/HKListingRules",
+                    page: 0,
+                    count: 6,
+                    totalCount: 0,
+                    docs: [],
+                    filteredDocs: [],
+                    displayDocs: [],
+                    pages: [],
+                    year: '',
+                    category: '',
+                    loaded: 0
+                },
+			};
+			$scope.yearFinancialReports = '';
+			$scope.yearResultsAnnouncements = '';
+			$scope.yearAnnouncementsAndCirculars = '';
+			//2021-09-14 ESAS0073 - AY
+			//Added yearHKListingRules for year filter
+            $scope.yearHKListingRules = '';
+			$scope.categoryAnnouncementsAndCirculars = '';
+
+			$scope.open_pdf_lang = function(type, doc, lang, addYearToPath) {
+				addYearToPath = addYearToPath || false;
+				graphqlService.loadDocument($scope.documents[type].path + (addYearToPath ? '/' + doc.year : '') + '/' + doc.name, lang, function(results) {
+					var items = results.search.results.items;
+					if(items.length) {
+						open_pdf($scope.cmsURL + items[0].file.fields.url);
+					}
+				});
+			};
+
+			$scope.loadDocs = function(type, year, category, search, page, reload) {
+				year = year || '*';
+				category = category || '*';
+				search = search || '*';
+				page = page || 0;
+				reload = reload || false;
+
+				if($scope.documents[type].loaded && !reload)
+					return false;
+
+				if(page < 0 || (page > 0 && page >= $scope.documents[type].pages.length))
+					return false;
+
+				if(reload)
+					$scope.documents[type].loaded = 0;
+
+				var t = $scope.documents[type];
+				graphqlService.loadDocuments(t, year, category, search, page, $scope.lang, function(results) {
+					t.totalCount = results.search.results.totalCount;
+					var orderedDocs = $filter('orderBy')(results.search.results.items, $scope.sortDates, true);
+					t.docs = orderedDocs;
+					t.filteredDocs =  orderedDocs;
+					t.page = page;
+					t.year = year;
+					t.category = category;
+					t.pages = [];
+					for(var i = 0; i < Math.ceil(t.totalCount / t.count); i++) {
+						t.pages.push({
+							number: i,
+							current: (t.page == i)
+						})
+					}
+					t.loaded++;
+
+					if($scope.lang != '') {
+						graphqlService.loadDocuments(t, year, category, search, page, '', function(results) {
+							var totalCount = results.search.results.totalCount;
+							var orderedDocs = $filter('orderBy')(results.search.results.items, $scope.sortDates, true);
+
+							for(var i = 0; i < totalCount; i++) {
+								for(var j = 0; j < t.totalCount; j++) {
+									if(t.docs[j].id == orderedDocs[i].id) {
+										t.docs[j].file.fields.size_en = orderedDocs[i].file.fields.size;
+										t.docs[j].file.fields.url_en = orderedDocs[i].file.fields.url;
+										break;
+									}
+								}
+							}
+						});
+					}
+				});
+			};
+
+			$scope.filterDocs = function(docs, field, reference, field2, reference2) {
+				var filteredDocs = docs.filter(function(doc) {
+					return ((reference == '' || doc[field] == reference) && (reference2 == '' || doc[field2] == reference2));
+				});
+
+				return filteredDocs;
+			};
+
+			$scope.formatDate = function(date) {
+				var d = new Date(date);
+				d.setTime(d.getTime() + (8*60*60*1000));
+
+				var month = '' + (d.getMonth() + 1),
+		        day = '' + d.getDate(),
+		        year = d.getFullYear();
+				
+				day = day < 10 ? '0' + day : '' + day;
+				month = month < 10 ? '0' + month : '' + month;
+
+			    return [day, month, year].join('-');
+			};
+
+			$scope.sortDates = function(item) {
+			    return Date.parse(item.date);
+			};
+			
+			$scope.trustHtml = function(htmlStr) {
+				return $sce.trustAsHtml(htmlStr);
+			};
+
+			graphqlService.loadContentsLang($scope.items, $scope.lang, function(contents) {
+				$scope.contents = contents;
+
+                for(var i = 0; i < contents.labels.children.length; i++)
+					$scope.labelsDict[contents.labels.children[i].name] = contents.labels.children[i].phrase.value;
+
+				for (var i = 0; i < contents.documentCategories.children.length; i++)
+					//2021-09-14 ESAS0071 - AY
+					//Updated binding of both phrase and show value to $scope.documentCategoriesDict array
+					$scope.documentCategoriesDict[contents.documentCategories.children[i].name] = { phrase: contents.documentCategories.children[i].phrase.value, show: contents.documentCategories.children[i].show.value };
+
+				var menus = [];
+
+				for(var i = 0; i < contents.menu.children.length; i++) {
+					var menuName = contents.menu.children[i].name;
+					menus.push(['submenu' + menuName, 'Global/Menu/' + menuName, ['ImageSection']]);
+				}
+
+				graphqlService.loadContentsLang(menus, $scope.lang, function(contents) {
+					$scope.menus = contents;
+					$timeout(function() {
+						mobileMenuLoaded();
+					}, 600);
+					$timeout(function() {
+						menuLoaded();
+					}, 300);
+					//2021-09-14 ESAS0071 - AY
+					//Added set selected tab after data binding of documentCategories show value
+					$timeout(function () {
+						$('.nav-tabs a[href="#' + anchor + '"]').tab('show');
+					}, 600);
+				});
+			});
+
+		    //2020-10-26 ESAS0042 - AY
+		    //Instead of calling $scope.loadDocs('LatestTopPublications') when loading slgCorpApp.controller() call loadPublication($scope) to load corresponding tab panel contents
+		    //$scope.loadDocs('LatestTopPublications');
+			loadPublication($scope);
+		}]);
+	</script>
+
+	<script>
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+
+				$(".navTabs").scrollCenter(".active", 300);
+		});
+	
+		//center scroll tab
+			jQuery.fn.scrollCenter = function(elem, speed) {
+
+				var active = jQuery(this).find(elem);
+			
+				var activeWidth = active.width() / 2; 
+		 
+				var pos = active.position().left + activeWidth; 
+				var elpos = jQuery(this).scrollLeft(); 
+				var elW = jQuery(this).width(); 
+		   
+				pos = pos + elpos - elW / 2;
+		  
+				jQuery(this).animate({
+				  scrollLeft: pos
+				}, speed == undefined ? 1000 : speed);
+				return this;
+		  };
+		//center scroll tab
+	
+	</script>
+	
+</body>
+</html>
